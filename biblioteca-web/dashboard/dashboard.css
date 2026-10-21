@@ -29,30 +29,27 @@ body {
 }
 
 .sidebar {
-  width: 260px;
-  background: #102a43;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 32px 20px;
+  width: 260px; /* Defina a largura fixa que preferir para o menu */
+    background-color: #1a252f; /* Tom escuro idêntico ao seu projeto */
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-.brand-box h1 {
-  margin: 0 0 32px;
-  font-size: 1.8rem;
-}
+
 
 .sidebar-nav {
+  padding-top: 88px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
 .nav-item {
-  color: #dfeaf9;
+  color: #2f3133;
   text-decoration: none;
-  padding: 12px 14px;
+  padding: 20px 14px;
   border-radius: 10px;
   transition: background 0.2s ease;
 }
@@ -79,13 +76,20 @@ body {
 
 .main-panel {
   flex: 1;
-  padding: 32px;
+    display: flex;
+    flex-direction: column;
 }
 
-.topbar {
-  margin-bottom: 24px;
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1a252f; /* Cor azulada da sua barra superior */
+    color: white;
+    padding: 0 24px;
+    height: 60px;
+    width: 100%; /* Garante que ela ocupe toda a largura disponível */
 }
-
 .eyebrow {
   margin: 0;
   font-size: 0.75rem;

@@ -1,5 +1,23 @@
 import { usuariosSistema } from '../dados/usuarios-sistema.js';
 
+document.addEventListener("DOMContentLoaded", () => {
+    // Busca o usuário logado salvo no navegador (mude 'usuarioLogado' se usar outra chave no login)
+    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    const elementoNome = document.getElementById("nome-usuario-logado");
+
+    if (elementoNome) {
+        if (usuarioLogado && usuarioLogado.nome) {
+            elementoNome.textContent = usuarioLogado.nome;
+        } else {
+            elementoNome.textContent = "Visitante";
+            
+            // Opcional: Se não tiver usuário logado, expulsa para a página de login
+            // window.location.href = "../login/login.html";
+        }
+    }
+});
+
+
 export const AUTH_STORAGE_KEY = 'usuarioLogado';
 
 function readStoredList(key) {
