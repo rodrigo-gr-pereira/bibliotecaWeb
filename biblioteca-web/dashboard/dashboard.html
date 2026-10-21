@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Biblioteca Web</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="./dashboard.css">
+</head>
+
+<body>
+  <div class="dashboard-shell">
+    <aside class="sidebar">
+      <div class="brand-box">
+        <h1>Biblioteca Web</h1>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="./dashboard.html" class="nav-item active">Dashboard</a>
+        <a href="../listagem-livro/listagem-livro.html" class="nav-item">Livros</a>
+        <a href="../cadastro-livro/cadastro-livro.html" class="nav-item">Cadastrar Livro</a>
+        <a href="../cadastro-usuario/cadastro-usuario.html" class="nav-item">Cadastrar Usuário</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="btn-logout" class="btn-logout" type="button">Sair</button>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Painel administrativo</p>
+          <h2>Bem-vindo(a), <span id="user-name">Usuário</span></h2>
+        </div>
+      </header>
+
+      <section class="stats-grid">
+        <article class="stat-card accent-blue">
+          <span class="stat-label">Total de livros</span>
+          <strong id="total-livros">0</strong>
+        </article>
+        <article class="stat-card accent-green">
+          <span class="stat-label">Disponíveis</span>
+          <strong id="livros-disponiveis">0</strong>
+        </article>
+        <article class="stat-card accent-orange">
+          <span class="stat-label">Indisponíveis</span>
+          <strong id="livros-indisponiveis">0</strong>
+        </article>
+        <article class="stat-card accent-purple">
+          <span class="stat-label">Leitores cadastrados</span>
+          <strong id="total-usuarios">0</strong>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h3>Resumo do acervo</h3>
+        </div>
+        <div id="livros-destaque" class="book-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./dashboard.js"></script>
+</body>
+
+</html>
