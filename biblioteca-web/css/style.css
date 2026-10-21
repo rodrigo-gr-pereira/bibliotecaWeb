@@ -1,0 +1,29 @@
+/* Header / Toolbar Global */
+.main-header {
+    background-color: #1e293b;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-header .brand-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.main-header .user-info {
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.main-header .user-name {
+    font-weight: 600;
+    color: #38bdf8;
+}
