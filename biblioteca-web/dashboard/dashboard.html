@@ -10,17 +10,23 @@
 </head>
 
 <body>
+  <header class="toolbar">
+    <div class="toolbar-brand">BIBLIOTECA WEB</div>
+    <div class="toolbar-user">
+      Olá, <span id="nome-usuario-logado">Carregando...</span>
+    </div>
+  </header>
   <div class="dashboard-shell">
     <aside class="sidebar">
-      <div class="brand-box">
-        <h1>Biblioteca Web</h1>
-      </div>
-
       <nav class="sidebar-nav">
-        <a href="./dashboard.html" class="nav-item active">Dashboard</a>
-        <a href="../listagem-livro/listagem-livro.html" class="nav-item">Livros</a>
-        <a href="../cadastro-livro/cadastro-livro.html" class="nav-item">Cadastrar Livro</a>
-        <a href="../cadastro-usuario/cadastro-usuario.html" class="nav-item">Cadastrar Usuário</a>
+        <button onclick="window.location.href='../dashboard/dashboard.html'" class="nav-item">Dashboard</button>
+        <button onclick="window.location.href='../listagem-livro/listagem-livro.html'" class="nav-item">Livros</button>
+        <button onclick="window.location.href='../cadastro-livro/cadastro-livro.html'" class="nav-item">Cadastrar
+          Livro</button>
+        <button onclick="window.location.href='../cadastro-usuario/cadastro-usuario.html'" class="nav-item">Cadastrar
+          Usuário</button>
+        <button class="nav-item" disabled>Realizar Empréstimo</button>
+        <button class="nav-item" disabled>Realizar Devolução</button>
       </nav>
 
       <div class="sidebar-footer">
@@ -29,13 +35,6 @@
     </aside>
 
     <main class="main-panel">
-      <header class="topbar">
-        <div>
-          <p class="eyebrow">Painel administrativo</p>
-          <h2>Bem-vindo(a), <span id="user-name">Usuário</span></h2>
-        </div>
-      </header>
-
       <section class="stats-grid">
         <article class="stat-card accent-blue">
           <span class="stat-label">Total de livros</span>

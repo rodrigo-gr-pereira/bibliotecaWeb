@@ -1,8 +1,39 @@
 import { usuariosSistema } from '../dados/usuarios-sistema.js';
 
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', () => {
+        const usuarioLogado = (() => {
+            try {
+                if (typeof localStorage === 'undefined') {
+                    return null;
+                }
+                const valor = localStorage.getItem('usuarioLogado');
+                return valor ? JSON.parse(valor) : null;
+            } catch (error) {
+                console.error('Erro ao ler usuário logado:', error);
+                return null;
+            }
+        })();
+
+        const elementoNome = document.getElementById('nome-usuario-logado');
+
+        if (elementoNome) {
+            if (usuarioLogado && usuarioLogado.nome) {
+                elementoNome.textContent = usuarioLogado.nome;
+            } else {
+                elementoNome.textContent = 'Visitante';
+            }
+        }
+    });
+}
+
 export const AUTH_STORAGE_KEY = 'usuarioLogado';
 
 function readStoredList(key) {
+    if (typeof localStorage === 'undefined') {
+        return [];
+    }
+
     try {
         const valor = localStorage.getItem(key);
         if (!valor) {
@@ -19,6 +50,10 @@ function readStoredList(key) {
 }
 
 export function getAuthUser() {
+    if (typeof localStorage === 'undefined') {
+        return null;
+    }
+
     try {
         const usuarioSalvo = localStorage.getItem(AUTH_STORAGE_KEY);
         return usuarioSalvo ? JSON.parse(usuarioSalvo) : null;
@@ -30,7 +65,7 @@ export function getAuthUser() {
 }
 
 export function saveAuthUser(usuario) {
-    if (!usuario) {
+    if (!usuario || typeof localStorage === 'undefined') {
         return;
     }
 
@@ -38,7 +73,9 @@ export function saveAuthUser(usuario) {
 }
 
 export function clearAuthUser() {
-    localStorage.removeItem(AUTH_STORAGE_KEY);
+    if (typeof localStorage !== 'undefined') {
+        localStorage.removeItem(AUTH_STORAGE_KEY);
+    }
 }
 
 /**
