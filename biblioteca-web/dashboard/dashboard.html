@@ -10,10 +10,16 @@
 </head>
 
 <body>
+  <header class="toolbar">
+    <div class="toolbar-brand">BIBLIOTECA WEB</div>
+    <div class="toolbar-user">
+      Olá, <span id="nome-usuario-logado">Carregando...</span>
+    </div>
+  </header>
   <div class="dashboard-shell">
     <aside class="sidebar">
       <nav class="sidebar-nav">
-        <button onclick="window.location.href='./dashboard.html'" class="nav-item">Dashboard</button>
+        <button onclick="window.location.href='../dashboard/dashboard.html'" class="nav-item">Dashboard</button>
         <button onclick="window.location.href='../listagem-livro/listagem-livro.html'" class="nav-item">Livros</button>
         <button onclick="window.location.href='../cadastro-livro/cadastro-livro.html'" class="nav-item">Cadastrar
           Livro</button>
@@ -29,13 +35,6 @@
     </aside>
 
     <main class="main-panel">
-      <header class="toolbar">
-        <div class="toolbar-brand">BIBLIOTECA WEB</div>
-        <div class="toolbar-user">
-          Olá, <span id="nome-usuario-logado">Carregando...</span>
-        </div>
-      </header>
-
       <section class="stats-grid">
         <article class="stat-card accent-blue">
           <span class="stat-label">Total de livros</span>
