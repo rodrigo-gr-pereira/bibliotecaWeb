@@ -1,6 +1,5 @@
 import { clearAuthUser, getAuthUser } from '../js/auth.js';
 import { livrosCadastrados } from '../dados/livros-cadastrados.js';
-import { usuariosCadastrados } from '../dados/usuarios-cadastrados.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const usuario = getAuthUser();
@@ -10,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  const userNameEl = document.getElementById('user-name');
+  const userNameEl = document.getElementById('nome-usuario-logado');
   if (userNameEl) {
     userNameEl.textContent = usuario.nome || usuario.email;
   }
@@ -18,22 +17,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const totalLivros = livrosCadastrados.length;
   const livrosDisponiveis = livrosCadastrados.filter((livro) => livro.disponivel).length;
   const livrosIndisponiveis = totalLivros - livrosDisponiveis;
-  const totalUsuarios = usuariosCadastrados.length;
+  
+  const totalPaginas = livrosCadastrados.reduce((soma, livro) => soma + (Number(livro.paginas) || 0), 0);
+  const mediaPaginas = totalLivros > 0 ? Number((totalPaginas / totalLivros).toFixed(2)) : 0;
 
   const totalLivrosEl = document.getElementById('total-livros');
   const livrosDisponiveisEl = document.getElementById('livros-disponiveis');
   const livrosIndisponiveisEl = document.getElementById('livros-indisponiveis');
-  const totalUsuariosEl = document.getElementById('total-usuarios');
+  const totalPaginasEl = document.getElementById('total-paginas');
+  const mediaPaginasEl = document.getElementById('media-paginas');
 
   if (totalLivrosEl) totalLivrosEl.textContent = String(totalLivros);
   if (livrosDisponiveisEl) livrosDisponiveisEl.textContent = String(livrosDisponiveis);
   if (livrosIndisponiveisEl) livrosIndisponiveisEl.textContent = String(livrosIndisponiveis);
-  if (totalUsuariosEl) totalUsuariosEl.textContent = String(totalUsuarios);
+  if (totalPaginasEl) totalPaginasEl.textContent = String(totalPaginas);
+  if (mediaPaginasEl) mediaPaginasEl.textContent = String(mediaPaginas);
 
   const booksListEl = document.getElementById('livros-destaque');
   if (booksListEl) {
     const topLivros = livrosCadastrados.slice(0, 5);
-    booksListEl.innerHTML = topLivros.map((livro) => `
+    booksListEl.innerHTML = topLivros.length ? topLivros.map((livro) => `
       <div class="book-item">
         <div>
           <h4>${livro.titulo}</h4>
@@ -43,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ${livro.disponivel ? 'Disponível' : 'Indisponível'}
         </span>
       </div>
-    `).join('');
+    `).join('') : '<p>Nenhum livro cadastrado.</p>';
   }
 
   const logoutButton = document.getElementById('btn-logout');
