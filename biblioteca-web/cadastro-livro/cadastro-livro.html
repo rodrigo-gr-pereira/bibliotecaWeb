@@ -4,14 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - Biblioteca Web</title>
+  <title>Cadastrar Livro - Biblioteca Web</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../dashboard/dashboard.css">
 </head>
 
 <body>
 
-  <body>
     <header class="toolbar">
       <div class="toolbar-brand">BIBLIOTECA WEB</div>
       <div class="toolbar-user">
@@ -37,7 +36,59 @@
         </div>
       </aside>
 
-      <script type="module" src="../dashboard/dashboard.js"></script>
-  </body>
+      <main class="form-container">
+        <section class="form-header">
+          <h1>Cadastro de Livros</h1>
+          <p>Preencha os campos abaixo com as informações solicitadas</p>
+        </section>
+
+        <!-- Caixa para feedback visual de sucesso ou erro -->
+        <div id="feedback-mensagem" class="feedback-box"></div>
+
+        <form id="form-cadastro-livro" class="user-form">
+          <fieldset>
+            <legend>Informações do Livro</legend>
+
+            <div class="input-group">
+              <label for="titulo">Título *</label>
+              <input type="text" id="titulo" name="titulo" required minlength="4" maxlength="80"
+                placeholder="Mínimo 4 e máximo 80 caracteres">
+            </div>
+
+            <div class="input-group">
+              <label for="autor">Autor *</label>
+              <input type="text" id="autor" name="autor" required minlength="4" maxlength="80"
+                placeholder="Mínimo 4 e máximo 80 caracteres">
+            </div>
+
+            <div class="form-row">
+              <div class="input-group">
+                <label for="categoria">Categoria *</label>
+                <select id="categoria" name="categoria" required>
+                  <option value="">Selecione...</option>
+                  <option value="Programação">Programação</option>
+                  <option value="Web Design">Web Design</option>
+                  <option value="Banco de Dados">Banco de Dados</option>
+                  <option value="Ferramentas">Ferramentas</option>
+                  <option value="Design">Design</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label for="paginas">Número de páginas *</label>
+                <input type="number" id="paginas" name="paginas" required min="1" inputmode="numeric"
+                  placeholder="Ex: 250">
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <button type="submit" id="btn-salvar-livro" class="btn-save">Salvar</button>
+          </div>
+        </form>
+      </main>
+
+      <script type="module" src="./cadastro-livro.js"></script>
+</body>
 
 </html>
