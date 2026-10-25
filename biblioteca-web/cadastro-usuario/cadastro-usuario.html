@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Usuário - Biblioteca Web</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../dashboard/dashboard.css">
+</head>
+
+<body>
+
+    <header class="toolbar">
+      <div class="toolbar-brand">BIBLIOTECA WEB</div>
+      <div class="toolbar-user">
+        Olá, <span id="nome-usuario-logado">Carregando...</span>
+      </div>
+    </header>
+    <div class="dashboard-shell">
+      <aside class="sidebar">
+        <nav class="sidebar-nav">
+          <button onclick="window.location.href='../dashboard/dashboard.html'" class="nav-item">Dashboard</button>
+          <button onclick="window.location.href='../listagem-livro/listagem-livro.html'"
+            class="nav-item">Livros</button>
+          <button onclick="window.location.href='../cadastro-livro/cadastro-livro.html'" class="nav-item">Cadastrar
+            Livro</button>
+          <button onclick="window.location.href='../cadastro-usuario/cadastro-usuario.html'" class="nav-item">Cadastrar
+            Usuário</button>
+          <button class="nav-item" disabled>Realizar Empréstimo</button>
+          <button class="nav-item" disabled>Realizar Devolução</button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <button id="btn-logout" class="btn-logout" type="button">Sair</button>
+        </div>
+      </aside>
+      <main class="form-container">
+        <section class="form-header">
+          <h1>Cadastro de Novo Usuário</h1>
+          <p>Preencha os campos abaixo com as informações solicitadas</p>
+        </section>
+
+        <form id="form-cadastro-usuario" class="user-form">
+          <!-- Dados Pessoais -->
+          <fieldset>
+            <legend>Informações Pessoais</legend>
+
+            <div class="input-group">
+              <label for="nome">Nome Completo *</label>
+              <input type="text" id="nome" name="nome" required minlength="4" maxlength="80"
+                placeholder="Mínimo 4 e máximo 80 caracteres">
+            </div>
+
+            <div class="form-row">
+              <div class="input-group">
+                <label for="genero">Gênero *</label>
+                <select id="genero" name="genero" required>
+                  <option value="">Selecione...</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Feminino">Feminino</option>
+                  <option value="Outro">Outro</option>
+                  <option value="Prefiro não informar">Prefiro não informar</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label for="dataNascimento">Data de Nascimento (DD/MM/AAAA) *</label>
+                <input type="text" id="dataNascimento" name="dataNascimento" required placeholder="DD/MM/AAAA"
+                  maxlength="10">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="input-group">
+                <label for="cpf">CPF (somente números) *</label>
+                <input type="text" id="cpf" name="cpf" required inputmode="numeric" placeholder="Ex: 12345678900">
+              </div>
+
+              <div class="input-group">
+                <label for="telefone">Telefone (somente números) *</label>
+                <input type="text" id="telefone" name="telefone" required inputmode="numeric"
+                  placeholder="Ex: 11988887777">
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="email">E-mail *</label>
+              <input type="email" id="email" name="email" required placeholder="exemplo@email.com">
+            </div>
+          </fieldset>
+
+          <!-- Endereço -->
+          <fieldset>
+            <legend>Endereço</legend>
+
+            <div class="form-row">
+              <div class="input-group">
+                <label for="cep">CEP (somente números) *</label>
+                <input type="text" id="cep" name="cep" required inputmode="numeric" placeholder="Ex: 01001000">
+              </div>
+
+              <div class="input-group">
+                <label for="estado">Estado *</label>
+                <input type="text" id="estado" name="estado" required placeholder="Ex: São Paulo">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="input-group">
+                <label for="cidade">Cidade *</label>
+                <input type="text" id="cidade" name="cidade" required placeholder="Ex: São Paulo">
+              </div>
+
+              <div class="input-group">
+                <label for="bairro">Bairro *</label>
+                <input type="text" id="bairro" name="bairro" required placeholder="Ex: Centro">
+              </div>
+            </div>
+
+            <div class="form-row logradouro-row">
+              <div class="input-group flex-grow">
+                <label for="logradouro">Logradouro *</label>
+                <input type="text" id="logradouro" name="logradouro" required placeholder="Ex: Rua das Flores">
+              </div>
+
+              <div class="input-group numero-group">
+                <label for="numero">Número *</label>
+                <input type="text" id="numero" name="numero" required inputmode="numeric" placeholder="Ex: 123">
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="complemento">Complemento (Opcional)</label>
+              <input type="text" id="complemento" name="complemento" placeholder="Ex: Apto 42B">
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <button type="submit" id="btn-salvar-usuario" class="btn-save">Salvar</button>
+          </div>
+        </form>
+      </main>
+
+      <script type="module" src="./cadastro-usuario.js"></script>
+</body>
+</html>

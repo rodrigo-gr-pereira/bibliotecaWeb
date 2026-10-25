@@ -1,0 +1,203 @@
+
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--text-main);
+    margin: 0;
+    padding: 20px;
+}
+
+/* Contentor principal do formulário */
+.form-container {
+    width: 100%;          /* Ocupa toda a largura do contentor pai */
+    max-width: none;      /* Remove qualquer restrição de largura máxima */
+    height: 100%;         /* Ocupa toda a altura do contentor pai (caso o pai tenha altura definida) */
+    min-height: 100vh;    /* Opcional: garante pelo menos a altura total do ecrã */
+    margin: 0;            /* Remove margens automáticas de centralização */
+    padding: 30px;        /* Espaçamento interno para o conteúdo não colar nas bordas */
+    background: #ffffff;
+    border-radius: 0;     /* Remove arredondamentos se pretender que encoste às pontas */
+    box-shadow: none;     /* Opcional: remove a sombra se ocupar o ecrã inteiro */
+    border: none;         /* Opcional: remove a borda exterior */
+    box-sizing: border-box;
+}
+
+.user-form {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-header {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 15px;
+}
+
+.form-header h1 {
+    font-size: 1.75rem;
+    color: var(--text-main);
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+.form-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Fieldsets e Grupos de Inputs */
+fieldset {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 24px;
+    background-color: #ffffff;
+}
+
+legend {
+    font-weight: 600;
+    color: var(--primary-color);
+    padding: 0 10px;
+    font-size: 1.05rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.form-row .input-group {
+    flex: 1;
+}
+
+.logradouro-row .flex-grow {
+    flex: 3;
+}
+
+.logradouro-row .numero-group {
+    flex: 1;
+}
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 8px;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    background-color: var(--input-bg);
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+
+.input-group input:hover,
+.input-group select:hover {
+    border-color: #94a3b8;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.12);
+}
+
+/* Estado de Erro nos Inputs */
+.input-group input.error,
+.input-group select.error {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+.input-group input.error:focus,
+.input-group select.error:focus {
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+}
+
+/* Caixa de Feedback Visual (Sucesso e Erro) */
+.feedback-box {
+    display: none; /* Controlado via JS */
+    padding: 16px 20px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 24px;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.feedback-box.success {
+    background-color: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.feedback-box.error {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botão Salvar */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 25px;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 20px;
+}
+
+.btn-save {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    padding: 12px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.2);
+}
+
+.btn-save:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-save:active {
+    transform: scale(0.98);
+}
+
+/* Responsividade para ecrãs mais pequenos */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-container {
+        margin: 20px 12px;
+        padding: 20px;
+    }
+}

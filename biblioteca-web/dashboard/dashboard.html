@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Biblioteca Web</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="./dashboard.css">
+</head>
+
+<body>
+  <header class="toolbar">
+    <div class="toolbar-brand">BIBLIOTECA WEB</div>
+    <div class="toolbar-user">
+      Olá, <span id="nome-usuario-logado">Carregando...</span>
+    </div>
+  </header>
+  <div class="dashboard-shell">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <button onclick="window.location.href='../dashboard/dashboard.html'" class="nav-item">Dashboard</button>
+        <button onclick="window.location.href='../listagem-livro/listagem-livro.html'" class="nav-item">Livros</button>
+        <button onclick="window.location.href='../cadastro-livro/cadastro-livro.html'" class="nav-item">Cadastrar
+          Livro</button>
+        <button onclick="window.location.href='../cadastro-usuario/cadastro-usuario.html'" class="nav-item">Cadastrar
+          Usuário</button>
+        <button class="nav-item" disabled>Realizar Empréstimo</button>
+        <button class="nav-item" disabled>Realizar Devolução</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="btn-logout" class="btn-logout" type="button">Sair</button>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <section class="stats-grid">
+        <article class="stat-card accent-blue">
+          <span class="stat-label">Total de livros</span>
+          <strong id="total-livros">0</strong>
+        </article>
+        <article class="stat-card accent-green">
+          <span class="stat-label">Disponíveis</span>
+          <strong id="livros-disponiveis">0</strong>
+        </article>
+        <article class="stat-card accent-orange">
+          <span class="stat-label">Indisponíveis</span>
+          <strong id="livros-indisponiveis">0</strong>
+        </article>
+        <article class="stat-card accent-purple">
+          <span class="stat-label">Total de páginas</span>
+          <strong id="total-paginas">0</strong>
+        </article>
+        <article class="stat-card accent-purple">
+          <span class="stat-label">Média de páginas por livro</span>
+          <strong id="media-paginas">0</strong>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h3>Resumo do acervo</h3>
+        </div>
+        <div id="livros-destaque" class="book-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./dashboard.js"></script>
+</body>
+
+</html>

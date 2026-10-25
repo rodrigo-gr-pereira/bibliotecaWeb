@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Livro - Biblioteca Web</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../dashboard/dashboard.css">
+</head>
+
+<body>
+
+  <header class="toolbar">
+    <div class="toolbar-brand">BIBLIOTECA WEB</div>
+    <div class="toolbar-user">
+      Olá, <span id="nome-usuario-logado">Carregando...</span>
+    </div>
+  </header>
+  <div class="dashboard-shell">
+    <aside class="sidebar">
+      <nav class="sidebar-nav">
+        <button onclick="window.location.href='../dashboard/dashboard.html'" class="nav-item">Dashboard</button>
+        <button onclick="window.location.href='../listagem-livro/listagem-livro.html'" class="nav-item">Livros</button>
+        <button onclick="window.location.href='../cadastro-livro/cadastro-livro.html'" class="nav-item">Cadastrar
+          Livro</button>
+        <button onclick="window.location.href='../cadastro-usuario/cadastro-usuario.html'" class="nav-item">Cadastrar
+          Usuário</button>
+        <button class="nav-item" disabled>Realizar Empréstimo</button>
+        <button class="nav-item" disabled>Realizar Devolução</button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="btn-logout" class="btn-logout" type="button">Sair</button>
+      </div>
+    </aside>
+
+    <main class="form-container">
+      <section class="form-header">
+        <h1>Cadastro de Livros</h1>
+        <p>Preencha os campos abaixo com as informações solicitadas</p>
+      </section>
+
+
+
+      <form id="form-cadastro-livro" class="user-form">
+        <fieldset>
+          <legend>Informações do Livro</legend>
+
+          <div class="input-group">
+            <label for="titulo">Título *</label>
+            <input type="text" id="titulo" name="titulo" required minlength="4" maxlength="80"
+              placeholder="Mínimo 4 e máximo 80 caracteres">
+          </div>
+
+          <div class="input-group">
+            <label for="autor">Autor *</label>
+            <input type="text" id="autor" name="autor" required minlength="4" maxlength="80"
+              placeholder="Mínimo 4 e máximo 80 caracteres">
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <label for="categoria">Categoria *</label>
+              <select id="categoria" name="categoria" required>
+                <option value="">Selecione...</option>
+                <option value="Programação">Programação</option>
+                <option value="Web Design">Web Design</option>
+                <option value="Banco de Dados">Banco de Dados</option>
+                <option value="Ferramentas">Ferramentas</option>
+                <option value="Design">Design</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label for="paginas">Número de páginas *</label>
+              <input type="number" id="paginas" name="paginas" required min="1" inputmode="numeric"
+                placeholder="Ex: 250">
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button type="submit" id="btn-salvar-livro" class="btn-save">Salvar</button>
+        </div>
+      </form>
+    </main>
+
+    <script type="module" src="./cadastro-livro.js"></script>
+</body>
+
+</html>

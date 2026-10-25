@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listagem de Livros - Biblioteca Web</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../dashboard/dashboard.css">
+  <link rel="stylesheet" href="./listagem-livro.css">
+</head>
+
+<body>
+    <header class="toolbar">
+      <div class="toolbar-brand">BIBLIOTECA WEB</div>
+      <div class="toolbar-user">
+        Olá, <span id="nome-usuario-logado">Carregando...</span>
+      </div>
+    </header>
+    <div class="dashboard-shell">
+      <aside class="sidebar">
+        <nav class="sidebar-nav">
+          <button onclick="window.location.href='../dashboard/dashboard.html'" class="nav-item">Dashboard</button>
+          <button onclick="window.location.href='../listagem-livro/listagem-livro.html'"
+            class="nav-item">Livros</button>
+          <button onclick="window.location.href='../cadastro-livro/cadastro-livro.html'" class="nav-item">Cadastrar
+            Livro</button>
+          <button onclick="window.location.href='../cadastro-usuario/cadastro-usuario.html'" class="nav-item">Cadastrar
+            Usuário</button>
+          <button class="nav-item" disabled>Realizar Empréstimo</button>
+          <button class="nav-item" disabled>Realizar Devolução</button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <button id="btn-logout" class="btn-logout" type="button">Sair</button>
+        </div>
+      </aside>
+
+      <main class="table-container">
+        <section class="table-header">
+          <h1>Listagem de Livros</h1>
+          <p>Consulte todos os livros registados no sistema</p>
+        </section>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Categoria</th>
+                <th>Número de páginas</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-livros-corpo">
+              <!-- Os dados serão injetados dinamicamente via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </main>
+
+      <script type="module" src="./listagem-livro.js"></script>
+</body>
+
+</html>
