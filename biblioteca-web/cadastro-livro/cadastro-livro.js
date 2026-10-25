@@ -74,10 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             await cadastrarLivro(novoLivro);
-            mostrarFeedback('Livro cadastrado com sucesso!', 'success');
-            form.reset();
+            alert('Livro cadastrado com sucesso!');
+         form.reset();
         } catch (erro) {
-            mostrarFeedback(erro.message || 'Não foi possível cadastrar o livro.', 'error');
+             alert('Erro no cadastrado do livro!');
+         form.reset();
         }
     });
 });

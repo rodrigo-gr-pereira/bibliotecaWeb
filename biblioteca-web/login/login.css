@@ -1,78 +1,103 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #f4f7f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    display: grid;
+    min-height: 100vh;
+    margin: 0;
+    padding: 24px 16px;
+    place-items: center;
+    background:
+        radial-gradient(ellipse at top left, rgba(47, 111, 237, 0.12), transparent 45%),
+        #f2f6fc;
+    color: #1f2937;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .login-container {
     width: 100%;
-    max-width: 400px;
-    padding: 20px;
+    max-width: 440px;
 }
 
 .login-card {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: clamp(26px, 7vw, 42px);
+    border: 1px solid #e3e8f1;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 20px 55px rgba(17, 37, 71, 0.12);
 }
 
 .login-card h2 {
+    margin: 0;
+    color: #172b4d;
+    font-size: clamp(1.7rem, 5vw, 2rem);
     text-align: center;
-    color: #333;
-    margin-bottom: 5px;
 }
 
 .subtitle {
+    margin: 10px 0 30px;
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.5;
     text-align: center;
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 25px;
 }
 
 .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .input-group label {
     display: block;
-    font-size: 14px;
-    color: #444;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    color: #334155;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 .input-group input {
     width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    transition: border-color 0.2s;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    background: #fff;
+    color: #1f2937;
+    font: inherit;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.input-group input::placeholder {
+    color: #94a3b8;
+}
+
+.input-group input:hover {
+    border-color: #94a3b8;
 }
 
 .input-group input:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #2f6fed;
+    box-shadow: 0 0 0 4px rgba(47, 111, 237, 0.14);
+}
+
+.input-group input:focus-visible,
+.btn-primary:focus-visible,
+.form-actions a:focus-visible {
+    outline: 3px solid rgba(47, 111, 237, 0.28);
+    outline-offset: 2px;
 }
 
 .form-actions {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 20px;
+    margin: 0 0 22px;
 }
 
 .form-actions a {
-    font-size: 13px;
-    color: #007bff;
+    color: #1d4fb8;
+    font-size: 0.875rem;
+    font-weight: 600;
     text-decoration: none;
 }
 
@@ -82,28 +107,45 @@ body {
 
 .btn-primary {
     width: 100%;
-    padding: 11px;
-    background-color: #007bff;
+    min-height: 48px;
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 10px;
+    background: #2f6fed;
     color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: bold;
+    font: inherit;
+    font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.2s;
+    box-shadow: 0 6px 14px rgba(47, 111, 237, 0.22);
+    transition: background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background: #1d4fb8;
+    box-shadow: 0 8px 18px rgba(47, 111, 237, 0.28);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
 }
 
 #feedback-message {
-    color: #e74c3c;
-    background-color: #fdf2f2;
-    border: 1px solid #f8b4b4;
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-size: 13px;
-    margin-top: 15px;
+    margin-top: 16px;
+    padding: 11px 13px;
+    border: 1px solid #fecaca;
+    border-radius: 9px;
+    background: #fef2f2;
+    color: #991b1b;
+    font-size: 0.875rem;
+    line-height: 1.45;
     text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
 }
