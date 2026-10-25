@@ -33,3 +33,77 @@ export const usuariosCadastrados = [
     }
 ];
 
+const STORAGE_KEY = 'usuariosCadastrados';
+
+function readStoredUsers() {
+    if (typeof localStorage === 'undefined') {
+        return [];
+    }
+
+    const storedUsers = localStorage.getItem(STORAGE_KEY);
+    if (!storedUsers) {
+        return [];
+    }
+
+    let parsedUsers;
+    try {
+        parsedUsers = JSON.parse(storedUsers);
+    } catch (error) {
+        console.error('Erro ao ler usuários cadastrados:', error);
+        throw new Error('A lista de usuários salva não é válida.');
+    }
+
+    if (!Array.isArray(parsedUsers)) {
+        throw new Error('A lista de usuários salva não é válida.');
+    }
+    return parsedUsers;
+}
+
+function normalizeEmail(email) {
+    return String(email || '').trim().toLowerCase();
+}
+
+function normalizeCpf(cpf) {
+    return String(cpf || '').replace(/\D/g, '');
+}
+
+export function inserirUsuario(usuario) {
+    if (!usuario || typeof usuario !== 'object') {
+        throw new Error('Os dados do usuário são inválidos.');
+    }
+    if (typeof localStorage === 'undefined') {
+        throw new Error('O armazenamento local não está disponível.');
+    }
+
+    const usuariosSalvos = readStoredUsers();
+    const todosUsuarios = [...usuariosCadastrados, ...usuariosSalvos];
+    const email = normalizeEmail(usuario.email);
+    const cpf = normalizeCpf(usuario.cpf);
+
+    if (email && todosUsuarios.some((existente) => normalizeEmail(existente.email) === email)) {
+        throw new Error('Já existe um usuário cadastrado com este e-mail.');
+    }
+    if (cpf && todosUsuarios.some((existente) => normalizeCpf(existente.cpf) === cpf)) {
+        throw new Error('Já existe um usuário cadastrado com este CPF.');
+    }
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...usuariosSalvos, usuario]));
+    return true;
+}
+
+export function listarUsuarios() {
+    const usuariosSalvos = readStoredUsers();
+    const emails = new Set();
+    const cpfs = new Set();
+
+    return [...usuariosCadastrados, ...usuariosSalvos].filter((usuario) => {
+        const email = normalizeEmail(usuario?.email);
+        const cpf = normalizeCpf(usuario?.cpf);
+        if ((email && emails.has(email)) || (cpf && cpfs.has(cpf))) {
+            return false;
+        }
+        if (email) emails.add(email);
+        if (cpf) cpfs.add(cpf);
+        return true;
+    });
+}

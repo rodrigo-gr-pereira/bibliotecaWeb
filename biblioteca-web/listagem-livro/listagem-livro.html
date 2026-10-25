@@ -4,14 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - Biblioteca Web</title>
+  <title>Listagem de Livros - Biblioteca Web</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../dashboard/dashboard.css">
+  <link rel="stylesheet" href="./listagem-livro.css">
 </head>
 
 <body>
-
-  <body>
     <header class="toolbar">
       <div class="toolbar-brand">BIBLIOTECA WEB</div>
       <div class="toolbar-user">
@@ -37,7 +36,30 @@
         </div>
       </aside>
 
-      <script type="module" src="../dashboard/dashboard.js"></script>
-  </body>
+      <main class="table-container">
+        <section class="table-header">
+          <h1>Listagem de Livros</h1>
+          <p>Consulte todos os livros registados no sistema</p>
+        </section>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Categoria</th>
+                <th>Número de páginas</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-livros-corpo">
+              <!-- Os dados serão injetados dinamicamente via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </main>
+
+      <script type="module" src="./listagem-livro.js"></script>
+</body>
 
 </html>

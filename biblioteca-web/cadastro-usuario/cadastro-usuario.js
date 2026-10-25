@@ -1,28 +1,5 @@
 import { clearAuthUser, getAuthUser } from '../js/auth.js';
-import { usuariosCadastrados } from '../dados/usuarios-cadastrados.js';
-
-const STORAGE_KEY = 'usuariosCadastrados';
-
-function readStoredUsers() {
-  const storedUsers = localStorage.getItem(STORAGE_KEY);
-  if (!storedUsers) {
-    return [];
-  }
-
-  const parsedUsers = JSON.parse(storedUsers);
-  if (!Array.isArray(parsedUsers)) {
-    throw new Error('A lista de usuários salva não é válida.');
-  }
-  return parsedUsers;
-}
-
-function normalizeEmail(email) {
-  return String(email || '').trim().toLowerCase();
-}
-
-function normalizeCpf(cpf) {
-  return String(cpf || '').replace(/\D/g, '');
-}
+import { inserirUsuario } from '../dados/usuarios-cadastrados.js';
 
 function parseBirthDate(value) {
   const match = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(value);
@@ -72,34 +49,36 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const cepInput = document.getElementById('cep');
-  cepInput.addEventListener('blur', async () => {
-    const cep = cepInput.value.replace(/\D/g, '');
-    if (cep.length !== 8) {
-      return;
-    }
-
-    try {
-      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-      if (!response.ok) {
-        throw new Error(`Consulta de CEP falhou com status ${response.status}.`);
-      }
-
-      const endereco = await response.json();
-      if (endereco.erro) {
-        alert('CEP não encontrado.');
+  if (cepInput) {
+    cepInput.addEventListener('blur', async () => {
+      const cep = cepInput.value.replace(/\D/g, '');
+      if (cep.length !== 8) {
         return;
       }
 
-      document.getElementById('logradouro').value = endereco.logradouro || '';
-      document.getElementById('bairro').value = endereco.bairro || '';
-      document.getElementById('cidade').value = endereco.localidade || '';
-      document.getElementById('estado').value = endereco.uf || '';
-      document.getElementById('numero').focus();
-    } catch (error) {
-      console.error('Erro ao consultar o CEP:', error);
-      alert('Não foi possível consultar o CEP. Preencha o endereço manualmente.');
-    }
-  });
+      try {
+        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        if (!response.ok) {
+          throw new Error(`Consulta de CEP falhou com status ${response.status}.`);
+        }
+
+        const endereco = await response.json();
+        if (endereco.erro) {
+          alert('CEP não encontrado.');
+          return;
+        }
+
+        document.getElementById('logradouro').value = endereco.logradouro || '';
+        document.getElementById('bairro').value = endereco.bairro || '';
+        document.getElementById('cidade').value = endereco.localidade || '';
+        document.getElementById('estado').value = endereco.uf || '';
+        document.getElementById('numero').focus();
+      } catch (error) {
+        console.error('Erro ao consultar o CEP:', error);
+        alert('Não foi possível consultar o CEP. Preencha o endereço manualmente.');
+      }
+    });
+  }
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -127,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (nome.length < 4 || nome.length > 80) {
-      alert('O Nome Completo deve ter entre 4 e 80 caracteres.');
+      alert('O nome completo deve ter entre 4 e 80 caracteres.');
       return;
     }
 
@@ -151,25 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    let usuariosSalvos;
-    try {
-      usuariosSalvos = readStoredUsers();
-    } catch (error) {
-      console.error('Erro ao ler usuários cadastrados:', error);
-      alert('Não foi possível carregar os usuários cadastrados. Verifique os dados salvos e tente novamente.');
-      return;
-    }
-
-    const todosUsuarios = [...usuariosCadastrados, ...usuariosSalvos];
-    if (todosUsuarios.some((user) => normalizeEmail(user.email) === normalizeEmail(email))) {
-      alert('Este e-mail já está cadastrado no sistema.');
-      return;
-    }
-    if (todosUsuarios.some((user) => normalizeCpf(user.cpf) === normalizeCpf(cpf))) {
-      alert('Este CPF já está cadastrado no sistema.');
-      return;
-    }
-
     const novoUsuario = {
       id: Date.now(),
       nome,
@@ -187,18 +147,10 @@ document.addEventListener('DOMContentLoaded', () => {
       bairro
     };
 
-    const emailsPadrao = new Set(usuariosCadastrados.map((user) => normalizeEmail(user.email)).filter(Boolean));
-    const cpfsPadrao = new Set(usuariosCadastrados.map((user) => normalizeCpf(user.cpf)).filter(Boolean));
-    const usuariosLocais = usuariosSalvos.filter((user) =>
-      !emailsPadrao.has(normalizeEmail(user.email)) &&
-      !cpfsPadrao.has(normalizeCpf(user.cpf))
-    );
-
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify([...usuariosLocais, novoUsuario]));
+      inserirUsuario(novoUsuario);
     } catch (error) {
-      console.error('Erro ao salvar usuário cadastrado:', error);
-      alert('Não foi possível salvar o usuário. Verifique o armazenamento do navegador e tente novamente.');
+      alert(error instanceof Error ? error.message : 'Não foi possível cadastrar o usuário.');
       return;
     }
 

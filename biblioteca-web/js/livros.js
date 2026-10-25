@@ -37,4 +37,23 @@ export function cadastrarLivro(livro) {
             reject(erro instanceof Error ? erro : new Error('Erro ao cadastrar livro. Tente novamente.'));
         }
     });
+
+}
+
+export function listarLivros() {
+    const livrosSalvos = localStorage.getItem('livrosCadastrados');
+    const listaLivrosSalvos = livrosSalvos ? JSON.parse(livrosSalvos) : [];
+    if (!Array.isArray(listaLivrosSalvos)) {
+        throw new Error('A lista de livros salva não é válida.');
+    }
+
+    const titulosEncontrados = new Set();
+    return [...livrosCadastrados, ...listaLivrosSalvos].filter((livro) => {
+        const titulo = String(livro?.titulo || '').trim().toLocaleLowerCase('pt-BR');
+        if (!titulo || titulosEncontrados.has(titulo)) {
+            return false;
+        }
+        titulosEncontrados.add(titulo);
+        return true;
+    });
 }
