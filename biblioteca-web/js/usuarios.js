@@ -2,8 +2,8 @@ import { usuariosCadastrados } from '../dados/usuarios-cadastrados.js';
 
 /**
  * Cadastra um novo usuário no sistema.
- * @param {Usuario} usuario - Instância ou objeto contendo os dados do usuário.
- * @returns {Promise<boolean>} Retorna uma Promise resolvida em caso de sucesso ou rejeitada com erro.
+ * {Usuario} usuario - Instância ou objeto contendo os dados do usuário.
+ * {Promise<boolean>} Retorna uma Promise resolvida em caso de sucesso ou rejeitada com erro.
  */
 export function cadastrarUsuario(usuario) {
     return new Promise((resolve, reject) => {
